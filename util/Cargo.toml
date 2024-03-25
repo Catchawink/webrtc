@@ -31,7 +31,7 @@ thiserror = "1"
 portable-atomic = { version = "1.6.0", features = ["critical-section"] }
 esp-idf-svc = { version = "<=0.48.0", features = ["alloc", "binstart", "native", "experimental"] }
 esp-idf-sys = { version = "<=0.34.0", features = ["binstart"] }
-esp-idf-hal = { version = "<=0.43.0", default-features = false }
+esp-idf-hal = { version = "=0.43.0", default-features = false }
 
 [target.'cfg(all(not(windows), not(target_arch = "xtensa")))'.dependencies]
 nix = { version = "0.26.2", optional = true }
