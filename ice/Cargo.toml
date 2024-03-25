@@ -9,6 +9,9 @@ documentation = "https://docs.rs/webrtc-ice"
 homepage = "https://webrtc.rs"
 repository = "https://github.com/webrtc-rs/ice"
 
+[features]
+xtensa = ["portable-atomic"]
+
 [dependencies]
 util = { version = "0.8.1", path = "../util", package = "webrtc-util", default-features = false, features = ["conn", "vnet", "sync"] }
 turn = { version = "0.7.1", path = "../turn" }
@@ -23,10 +26,12 @@ rand = "0.8"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 thiserror = "1"
-tokio = { version = "1.32.0", features = ["full"] }
+tokio = { version = "1.32.0", default-features = false, features = ["rt", "macros", "net", "io-util"] }
 url = "2"
 uuid = { version = "1", features = ["v4"] }
 waitgroup = "0.1"
+
+portable-atomic = { version = "1.6.0", features = ["critical-section"], optional = true }
 
 [dev-dependencies]
 tokio-test = "0.4"

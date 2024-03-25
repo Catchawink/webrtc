@@ -1,5 +1,8 @@
 use std::fmt;
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicU16, AtomicU64, Ordering};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicU16, AtomicU64, Ordering};
 use std::sync::Arc;
 
 /// Sequencer generates sequential sequence numbers for building RTP packets

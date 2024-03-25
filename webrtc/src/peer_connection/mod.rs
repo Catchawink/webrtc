@@ -13,7 +13,10 @@ pub mod signaling_state;
 
 use std::future::Future;
 use std::pin::Pin;
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicBool, AtomicU64, AtomicU8, Ordering};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicBool, AtomicU64, AtomicU8, Ordering};
 use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH};
 

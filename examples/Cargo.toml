@@ -10,12 +10,12 @@ homepage = "https://webrtc.rs"
 repository = "https://github.com/webrtc-rs/examples"
 
 [dependencies]
-
+ring = { version = ">=0.17.8", default-features = false, features = ["less-safe-getrandom-espidf"] }
 
 [dev-dependencies]
 webrtc = { path = "../webrtc" }
 
-tokio = { version = "1.32.0", features = ["full"] }
+tokio = { version = "1.32.0", default-features = false, features = ["rt", "macros", "net", "io-util"] }
 env_logger = "0.10"
 clap = "3"
 hyper = { version = "0.14.27", features = ["full"] }
@@ -30,6 +30,7 @@ bytes = "1"
 lazy_static = "1"
 rand = "0.8"
 
+ring = { version = ">=0.17.8", default-features = false, features = ["less-safe-getrandom-espidf"] }
 
 [[example]]
 name = "rc-cycle"

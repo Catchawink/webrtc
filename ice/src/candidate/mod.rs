@@ -15,7 +15,12 @@ pub mod candidate_server_reflexive;
 
 use std::fmt;
 use std::net::{IpAddr, SocketAddr};
+
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicBool, AtomicU16, AtomicU8, Ordering};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicBool, AtomicU16, AtomicU8, Ordering};
+
 use std::sync::Arc;
 use std::time::SystemTime;
 

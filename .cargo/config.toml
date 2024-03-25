@@ -1,0 +1,48 @@
+[env]
+MCU="esp32s3"
+# Enables the esp-idf-sys "native" build feature (`cargo build --features native`) to build against ESP-IDF (v5.1.2)
+ESP_IDF_VERSION = { value = "tag:v5.1.2" }
+CARGO_WORKSPACE_DIR = { value = "", relative = true }
+
+[toolchain]
+channel = "esp"
+components = ["rustfmt", "rustc-dev"]
+targets = ["xtensa-esp32-espidf", "xtensa-esp32s3-espidf"]
+
+[build]
+#target = "xtensa-esp32-espidf"
+target = "xtensa-esp32s3-espidf"
+rustflags = ["-Z threads=8", "--cfg", "crossbeam_no_atomic_64"]
+
+[target.xtensa-esp32-espidf]
+linker = "ldproxy"
+runner = "espflash flash --monitor --partition-table partitions.csv -p /dev/cu.usbserial-1440"
+rustflags = ["--cfg", "espidf_time64", "--cfg", "crossbeam_no_atomic_64", "-C", "default-linker-libraries"]
+
+[target.xtensa-esp32s3-espidf]
+linker = "ldproxy"
+runner = "espflash flash --monitor --partition-table partitions.csv -p /dev/cu.usbserial-1440"
+# Upper right port:
+# /dev/cu.usbserial-1420
+# Upper left port:
+# /dev/cu.usbserial-1440
+# Upper extension port:
+# /dev/cu.usbserial-14330
+# Future - necessary for the experimental "native build" of esp-idf-sys with ESP32C3
+# See also https://github.com/ivmarkov/embuild/issues/16
+# rustflags = ["-C", "default-linker-libraries"]
+rustflags = ["--cfg", "espidf_time64", "--cfg", "crossbeam_no_atomic_64", "--cfg", "mio_unsupported_force_poll_poll", "-C", "default-linker-libraries"]
+
+[unstable]
+build-std          = ["panic_abort", "std"]
+build-std-features = ["panic_immediate_abort"]
+
+# These configurations will pick up your custom "sdkconfig.release", "sdkconfig.debug" or "sdkconfig.defaults[.*]" files
+# that you might put in the root of the project
+# The easiest way to generate a full "sdkconfig[.release|debug]" configuration (as opposed to manually enabling only the necessary flags via "sdkconfig.defaults[.*]"
+# is by running "cargo pio espidf menuconfig" (that is, if using the pio builder)
+#ESP_IDF_SDKCONFIG = { value = "./sdkconfig.release", relative = true }
+#ESP_IDF_SDKCONFIG = { value = "./sdkconfig.debug", relative = true }
+# ESP-IDF will be installed in ~/.espressif so it can be reused across the different examples.
+# See also https://github.com/esp-rs/esp-idf-sys#esp_idf_tools_install_dir-esp_idf_tools_install_dir
+#ESP_IDF_TOOLS_INSTALL_DIR = { value = "global" }

@@ -1,4 +1,7 @@
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicBool, AtomicU64};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicBool, AtomicU64};
 
 use arc_swap::ArcSwapOption;
 use util::sync::Mutex as SyncMutex;

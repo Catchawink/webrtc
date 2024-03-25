@@ -5,7 +5,10 @@ use std::fmt;
 use std::net::{IpAddr, SocketAddr};
 use std::ops::{BitAnd, BitOr};
 use std::str::FromStr;
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicU64, Ordering};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicU64, Ordering};
 use std::time::SystemTime;
 
 use super::net::*;

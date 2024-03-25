@@ -1,7 +1,11 @@
 use std::net::{IpAddr, Ipv4Addr};
 use std::result::Result;
 use std::str::FromStr;
+
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::AtomicU64;
+#[cfg(feature = "xtensa")]
+use portable_atomic::AtomicU64;
 
 use async_trait::async_trait;
 use util::vnet::chunk::Chunk;

@@ -9,6 +9,9 @@ documentation = "https://docs.rs/rtp"
 homepage = "https://webrtc.rs"
 repository = "https://github.com/webrtc-rs/rtp"
 
+[features]
+xtensa = ["portable-atomic"]
+
 [dependencies]
 util = { version = "0.8.1", path = "../util", package = "webrtc-util", default-features = false, features = ["marshal"] }
 
@@ -16,6 +19,8 @@ bytes = "1"
 rand = "0.8"
 thiserror = "1"
 serde = { version = "1", features = ["derive"] }
+
+portable-atomic = { version = "1.6.0", features = ["critical-section"], optional = true }
 
 [dev-dependencies]
 chrono = "0.4.28"

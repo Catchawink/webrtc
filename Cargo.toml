@@ -1,24 +1,35 @@
 [workspace]
 members = [
-    "constraints",
-    "data",
-    "dtls",
-    "examples",
-    "ice",
-    "interceptor",
-    "mdns",
-    "media",
-    "rtcp",
-    "rtp",
-    "sctp",
-    "sdp",
-    "srtp",
-    "stun",
-    "turn",
-    "util",
+#    "constraints",
+#    "data",
+#    "dtls",
+#    "examples",
+#    "ice",
+#    "interceptor",
+#    "mdns",
+#    "media",
+#    "rtcp",
+#    "rtp",
+#    "sctp",
+#    "sdp",
+#    "srtp",
+#    "stun",
+#    "turn",
+#    "util",
     "webrtc",
 ]
 resolver = "2"
 
 [profile.dev]
 opt-level = 0
+
+[patch.crates-io]
+cc = { git = "https://github.com/rust-lang/cc-rs", tag = "1.0.83" }
+#[patch.crates-io]
+ring = { git = "https://github.com/coder0xff/ring.git", branch = "less-safe-espidf" }
+tokio = { git = "https://github.com/tokio-rs/tokio", branch = "master" }
+mio = { git = "https://github.com/tokio-rs/mio", branch = "master" }
+socket2 = { git = "https://github.com/rust-lang/socket2", branch = "master" }
+#x509-parser = { version = ">0.16.0", git = "https://github.com/rusticata/x509-parser.git",  branch = "master" }
+rcgen = { git = "https://github.com/Catchawink/rcgen.git", branch = "main" }
+#x509-parser = { version = "0.15.1", git = "https://github.com/rusticata/x509-parser.git", rev = "6f4a7322961e58af078910917c569c7e80705b81", package = "x509-parser" }

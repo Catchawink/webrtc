@@ -1,4 +1,7 @@
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicU16, AtomicU8};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicU16, AtomicU8};
 
 use util::sync::Mutex as SyncMutex;
 

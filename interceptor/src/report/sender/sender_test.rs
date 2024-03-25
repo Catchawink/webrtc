@@ -251,6 +251,7 @@ async fn test_stream_octet_counter_wraps_on_overflow() -> Result<()> {
     Ok(())
 }
 
+#[cfg(not(feature = "xtensa"))]
 #[tokio::test]
 async fn test_stream_octet_counter_saturates_u32_from_usize() -> Result<()> {
     let mut counters = sender_stream::Counters::default();

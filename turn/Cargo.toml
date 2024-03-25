@@ -13,14 +13,14 @@ repository = "https://github.com/webrtc-rs/turn"
 util = { version = "0.8.1", path = "../util", package = "webrtc-util", default-features = false, features = ["conn", "vnet"] }
 stun = { version = "0.5.1", path = "../stun" }
 
-tokio = { version = "1.32.0", features = ["full"] }
+tokio = { version = "1.32.0", default-features = false, features = ["rt", "macros", "net", "io-util"] }
 tokio-util = "0.7"
 futures = "0.3"
 async-trait = "0.1"
 log = "0.4"
 base64 = "0.21"
 rand = "0.8"
-ring = "0.17"
+ring = { version = ">=0.17.8", default-features = false, features = ["less-safe-getrandom-espidf"] }
 md-5 = "0.10"
 thiserror = "1"
 
@@ -34,6 +34,7 @@ criterion = "0.5"
 
 [features]
 metrics = []
+xtensa = []
 
 [[bench]]
 name = "bench"

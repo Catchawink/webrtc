@@ -1,6 +1,11 @@
 use std::fmt;
 use std::ops::Add;
+
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicU16, AtomicU64, AtomicU8, Ordering};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicU16, AtomicU64, AtomicU8, Ordering};
+
 use std::sync::Arc;
 use std::time::{Duration, SystemTime, UNIX_EPOCH};
 

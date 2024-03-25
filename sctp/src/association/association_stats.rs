@@ -1,4 +1,7 @@
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::{AtomicU64, Ordering};
+#[cfg(feature = "xtensa")]
+use portable_atomic::{AtomicU64, Ordering};
 
 #[derive(Default, Debug)]
 pub(crate) struct AssociationStats {

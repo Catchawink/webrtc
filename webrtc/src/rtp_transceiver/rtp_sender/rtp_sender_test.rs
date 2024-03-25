@@ -1,4 +1,7 @@
+#[cfg(not(feature = "xtensa"))]
 use std::sync::atomic::AtomicU64;
+#[cfg(feature = "xtensa")]
+use portable_atomic::AtomicU64;
 
 use bytes::Bytes;
 use tokio::time::Duration;
