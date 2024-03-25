@@ -60,4 +60,4 @@ ring = { version = ">=0.17.8", default-features = false, features = ["less-safe-
 pem = ["dep:pem", "dtls/pem"]
 openssl = ["srtp/openssl"]
 vendored-openssl = ["srtp/vendored-openssl"]
-xtensa = ["portable-atomic"]
+xtensa = ["portable-atomic", "util/xtensa", "mdns/xtensa", "turn/xtensa", "ice/xtensa", "interceptor/xtensa", "rtp/xtensa", "sctp/xtensa"]
